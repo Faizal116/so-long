@@ -73,4 +73,10 @@ void	xpm_to_window(t_program  *g);
 static int	press_x(t_program *g);
 void	game_over(t_program *g);
 
+static void	player_x_coins(t_program *g);
+static void	enemy_movements(t_program *g);
+
+void	movement(t_program *g);
+static int	key_binding(int pressed, t_program *g);
+
 #endif
