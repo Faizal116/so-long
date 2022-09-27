@@ -14,7 +14,7 @@ static int	count_items(char *line, int c)
 static int	check_ber(char *file)
 {
 	const	char	*extension;
-	const	int		*length;
+	const	int		length;
 
 	extension = ft_strrchr(file, '.');
 	length = (int)ft_strlen(extension);
