@@ -66,6 +66,10 @@ int	check_cep(char *file, t_map *map)
 		free(line);
 		line = get_next_line(fd);
 	}
+	map->row = i;
+	if (!map->coins || map->exit != 1 || map->player != 1 || map->diff_col)
+		return (0);
+	return (1);
 }
 
 int	check_map(char *file, t_map *map)
