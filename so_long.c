@@ -9,7 +9,7 @@ int	main(int ac, char **av)
 	if (ac == 2 && check_map(av[1], &g.map))
 	{
 		g.mlx = mlx_init();
-		g.window = mlx_new_wndow(g.mlx, g.map.col * g.map.px, \
+		g.window = mlx_new_window(g.mlx, g.map.col * g.map.px, \
 					g.map.row * g.map.px, "so_long");
 		link_xpm(av[1], &g);
 		alloc_enemies(&g);
