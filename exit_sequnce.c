@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-static int	press_x(t_program *g)
+int	press_x(t_program *g)
 {
 	game_over(g);
 	return (0);

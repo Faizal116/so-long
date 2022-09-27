@@ -23,7 +23,7 @@ void	movement(t_program *g)
 	free(mcount);
 }
 
-static int	key_binding(int pressed, t_program *g)
+int	key_binding(int pressed, t_program *g)
 {
 	if (pressed == ESC)
 		game_over(g);

@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-static void	player_x_coins(t_program *g)
+void	player_x_coins(t_program *g)
 {
 	void	*temp;
 
@@ -16,7 +16,7 @@ static void	player_x_coins(t_program *g)
 //animates by using swap to swap the images of the coins to imitate rotating movement
 //player changes image when it collects a coin to show golden tinge on some parts by also swapping images
 
-static void	enemy_movements(t_program *g)
+void	enemy_movements(t_program *g)
 {
 	int		i;
 	t_enemy	x1;
