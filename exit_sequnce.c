@@ -2,19 +2,26 @@
 
 static int	press_x(t_program *g)
 {
-	end_game(g);
+	game_over(g);
 	return (0);
+}
+
+void	exit_messages(t_program *g)
+{
+	if (g->lines[g->player1.to.y][g->player1.to.x] == 'E' \
+		&& g->player1.c == g->map.coins)
+		ft_putstr_fd("Congratulations!\n", 1);
+	else if (g->player1.movecount > 99)
+		ft_putstr_fd("Map has no valid path\nOr maybe you're just bad ;)\n", 1);
+	else 
+		ft_putstr_fd("You lose, please try again.\n", 1);
 }
 
 void	game_over(t_program *g)
 {
 	char	**temp;
 
-	if (g->lines[g->player1.to.y][g->player1.to.x] == 'E' \
-		&& g->player1.c == g->map.coins)
-		ft_putstr_fd("Congratulations!\n", 1);
-	else
-		ft_putstr_fd("You lose, please try again.\n", 1);
+	exit_messages(g);
 	temp = g->lines;
 	while (*temp)
 		free(*temp++);
