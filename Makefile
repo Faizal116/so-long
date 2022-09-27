@@ -1,30 +1,30 @@
 NAME = so_long
-SRC = *.c
-OBJ = $(SRC:.c=.o)
+SRC = $(wildcard *.c)
+OBJ = ${SRC:.c=.o}
+LIB = -L./libft -lft -lmlx
+INC = -Iincludes -Imlx -Ilibft
 
 CC = gcc
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=address
 FRAMEWORK = -framework OpenGL -framework AppKit
-INC = -lmlx -Llibft
 
-all : $(NAME)
+all : ${NAME}
 
-$(NAME): $(OBJ) libft
-		$(CC) -o $(OBJ) $(INC) $(FRAMEWORK)
+${NAME}: $(OBJ)
+		@make -C libft
+		@${CC} ${FLAGS} ${LIB} ${INC} $(addprefix obj/, ${OBJ}) ${FRAMEWORK} -o $@
 
 %.o: %.c
-		$(CC) -c $(FLAGS) $?
-
-libft:
-		make -C libft
+		@mkdir -p obj
+		@${CC} ${FLAGS} ${INC} -c $< -o obj/$@
 
 clean:
-		rm -f $(OBJ)
-		make -C libft clean
+		@rm -rf obj
 
 fclean: clean
-		rm -f $(NAME) libft/libft.a
+		@rm -rf ${NAME}
+		@make fclean -C libft
 
 re: fclean all
 
-.PHONY: all bonus libft clean fclean re
+.PHONY: all clean fclean re
