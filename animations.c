@@ -26,9 +26,9 @@ static void	enemy_movements(t_program *g)
 	{
 		x1 = g->x1[i];
 		if (g->lines[x1.now.y - 1][x1.now.x] == '0')
-			g->lines[x1.now.y - 1][x1.now.x] == 'V';
+			g->lines[x1.now.y - 1][x1.now.x] = 'V';
 		else if (g->lines[x1.now.y + 1][x1.now.x] == '0')
-			g->lines[x1.now.y + 1][x1.now.x] == 'V';
+			g->lines[x1.now.y + 1][x1.now.x] = 'V';
 		else
 			continue ;
 		g->lines[x1.now.y][x1.now.x] = '0';

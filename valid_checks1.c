@@ -14,10 +14,10 @@ static int	count_items(char *line, int c)
 static int	check_ber(char *file)
 {
 	const	char	*extension;
-	const	char	*length;
+	const	int		*length;
 
 	extension = ft_strrchr(file, '.');
-	length = ft_strlen(extension);
+	length = (int)ft_strlen(extension);
 	if (!ft_strncmp(extension, ".ber", length))
 		return (1);
 	return (0);
@@ -57,7 +57,7 @@ int	check_cep(char *file, t_map *map)
 	{
 		if (i == 1)
 			map->col = ft_strlen(line);
-		else if (ft_strlen(line) != map->col)
+		else if ((int)ft_strlen(line) != map->col)
 			map->diff_col = 1;
 		map->coins += count_items(line, 'C');
 		map->exit += count_items(line, 'E');
@@ -81,9 +81,13 @@ int	check_map(char *file, t_map *map)
 
 	ok = 1; //means its fine if 1
 	fd = open(file, O_RDONLY);
+	if (!check_ber(file) || !check_cep(file, map))
+		ok = 0;
+	i = 0;
+	line = get_next_line(fd);
 	while (line && ++i)
 	{
-		if (!check_ber(file) || !check_cep(file, map))
+		if ((i == 1 || i == map->row) && !check_border(line, "1"))
 			ok = 0;
 		else if (i != 1 && i != map->row && (!check_border(line, "01CEPV") \
 				|| line[0] != '1' || line[map->col - 1] != '1'))

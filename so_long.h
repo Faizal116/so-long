@@ -13,6 +13,7 @@
 # include <stdio.h>
 # include "libft/libft.h"
 # include <fcntl.h>
+# include <mlx.h>
 
 typedef struct s_coord
 {
