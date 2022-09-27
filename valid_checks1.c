@@ -17,7 +17,7 @@ static int	check_ber(char *file)
 	int			length;
 
 	extension = ft_strrchr(file, '.');
-	length = (int)ft_strlen(extension);
+	length = ft_strlen(extension);
 	if (!ft_strncmp(extension, ".ber", length))
 		return (1);
 	return (0);
@@ -37,7 +37,7 @@ static int	check_border(char *line, char *border)
 		while (*temp)
 			if (*line == *temp++)
 				i++;
-			++line;
+		++line;
 	}
 	if (i != length)
 		return (0);
@@ -74,10 +74,10 @@ int	check_cep(char *file, t_map *map)
 
 int	check_map(char *file, t_map *map)
 {
-	int			i;
-	int			ok;
-	char		*line;
-	int	fd;
+	int		i;
+	int		ok;
+	char	*line;
+	int		fd;
 
 	ok = 1; //means its fine if 1
 	fd = open(file, O_RDONLY);
@@ -99,4 +99,3 @@ int	check_map(char *file, t_map *map)
 		return (0);
 	return (1);
 }
-
