@@ -8,7 +8,7 @@ static int	count_items(char *line, int c)
 	while (*line)
 		if (*line++ == c)
 			++count;
-		return (count);
+	return (count);
 }
 
 static int	check_ber(char *file)
@@ -23,7 +23,7 @@ static int	check_ber(char *file)
 	return (0);
 }
 
-static int	check_border(char *line, char *border)
+static int	check_valic_char(char *line, char *valid)
 {
 	int			i;
 	char		*temp;
@@ -33,7 +33,7 @@ static int	check_border(char *line, char *border)
 	length = ft_strlen(line);
 	while (*line)
 	{
-		temp = border;
+		temp = valid;
 		while (*temp)
 			if (*line == *temp++)
 				i++;
@@ -52,7 +52,7 @@ int	check_cep(char *file, t_map *map)
 
 	i = 0;
 	fd = open(file, O_RDONLY);
-	line = get_next_line(fd);
+	line = special_get_next_line(fd);
 	while (line && ++i)
 	{
 		if (i == 1)
@@ -64,7 +64,7 @@ int	check_cep(char *file, t_map *map)
 		map->player += count_items(line, 'P');
 		map->enemy += count_items(line, 'V');
 		free(line);
-		line = get_next_line(fd);
+		line = special_get_next_line(fd);
 	}
 	map->row = i;
 	if (!map->coins || map->exit != 1 || map->player != 1 || map->diff_col)
@@ -84,16 +84,16 @@ int	check_map(char *file, t_map *map)
 	if (!check_ber(file) || !check_cep(file, map))
 		ok = 0;
 	i = 0;
-	line = get_next_line(fd);
+	line = special_get_next_line(fd);
 	while (line && ++i)
 	{
-		if ((i == 1 || i == map->row) && !check_border(line, "1"))
+		if ((i == 1 || i == map->row) && !check_valid_char(line, "1"))
 			ok = 0;
-		else if (i != 1 && i != map->row && (!check_border(line, "01CEPV") \
+		else if (i != 1 && i != map->row && (!check_valid_char(line, "01CEPV") \
 				|| line[0] != '1' || line[map->col - 1] != '1'))
 			ok = 0;
 		free(line);
-		line = get_next_line(fd);
+		line = special_get_next_line(fd);
 	}
 	if (!ok)
 		return (0);

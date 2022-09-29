@@ -8,6 +8,7 @@
 # define RIGHT 2
 # define UP 13
 # define BUFFER_SIZE 100
+# define ANIM_FRAMES 10
 
 # include <stdlib.h>
 # include <stdio.h>
@@ -65,7 +66,7 @@ typedef struct s_program
 	t_map		map;
 }	t_program;
 
-char	*get_next_line(int fd);
+char	*special_get_next_line(int fd);
 int	check_map(char *file, t_map *map);
 void	init_game(t_program *g);
 void	link_xpm(char *file, t_program *g);
@@ -76,6 +77,7 @@ void	game_over(t_program *g);
 
 void	player_x_coins(t_program *g);
 void	enemy_movements(t_program *g);
+int	ft_idle_anim(void *param);
 
 void	movement(t_program *g);
 int	key_binding(int pressed, t_program *g);
