@@ -36,3 +36,24 @@ void	enemy_movements(t_program *g)
 }
 
 //very simple movement along the y axis to imitate the movement of up and down by swapping positions with the empty tiles in the map.
+
+int	ft_idle_anim(void *param)
+{
+	t_program 	*g;
+	static int	frames;
+
+	g = (t_program *)param;
+	frames++;
+	if (frames == ANIM_FRAMES)
+		g->player1.now.y += 1;
+	else if (frames >= ANIM_FRAMES * 2)
+	{
+		g->player1.now.y -= 1;
+		frames = 0;
+	}
+	mlx_clear_window(g->mlx, g->window);
+	xpm_to_window(g);
+	return (0);
+}
+
+//trying out idle animations, would need more tweaking.

@@ -19,6 +19,7 @@ int	main(int ac, char **av)
 		free(mcount);
 		mlx_hook(g.window, 17, 0, press_x, &g);
 		mlx_key_hook(g.window, key_binding, &g);
+		mlx_loop_hook(g.mlx, ft_idle_anim, &g);
 		mlx_loop(g.mlx);
 	}
 	else
